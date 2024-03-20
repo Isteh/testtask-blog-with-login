@@ -1,0 +1,77 @@
+@import '/app/mediaBreakPoints';
+
+.nav {
+  margin: 0 45px;
+  display: flex;
+  position: relative;
+
+  @media (max-width: $mobile-width) {
+    margin: 0;
+    flex-direction: column;
+  }
+}
+
+.linksList {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  width: 100%;
+  justify-content: flex-end;
+
+  @media (max-width: $mobile-width) {
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: white;
+    overflow-y: scroll;
+    position: absolute;
+    top: 50px;
+    min-height: calc(100vh - 50px);
+
+    & li {
+      width: 100%;
+    }
+
+    display: none;
+
+    &.listOpen {
+      display: flex;
+    }
+  }
+}
+
+.toggler {
+  height: 50px;
+  width: 100%;
+
+  background: none;
+  border: none;
+  position: relative;
+
+  &:hover {
+    background-color: rgba(
+      $color: #000000,
+      $alpha: 0.1
+    );
+  }
+
+  &::after {
+    content: '';
+    width: 30px;
+    height: 2px;
+
+    position: absolute;
+    top: 25px;
+    right: 33px;
+
+    box-shadow: 0 8px 0 var(--dark-color),
+      0 -8px 0 var(--dark-color);
+
+    background-color: var(--dark-color);
+  }
+
+  display: none;
+
+  @media (max-width: $mobile-width) {
+    display: block;
+  }
+}

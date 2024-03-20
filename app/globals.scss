@@ -1,0 +1,26 @@
+:root {
+  --primary-color: #ff6464;
+  --secondary-color: #00a8cc;
+  --dark-color: #21243d;
+  --light-color: #8695a4;
+  --desktop-margin: 150px;
+  --mobile-margin: 10px;
+  $mobile-width: 375px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--main-font);
+  color: var(--dark-color);
+  font-size: 16px;
+
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+}
