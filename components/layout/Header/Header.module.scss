@@ -1,5 +1,13 @@
 @import '/app/mediaBreakPoints';
 
+.header {
+  margin-bottom: 150px;
+
+  @media (max-width: $mobile-width) {
+    margin-bottom: 33px;
+  }
+}
+
 .nav {
   margin: 0 45px;
   display: flex;

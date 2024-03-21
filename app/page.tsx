@@ -1,16 +1,29 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
+import AboutMe from "@/components/blocks/AboutMe/AboutMe";
+import SectionWithArticlesList from "@/components/ui/SectionWithArticlesList/SectionWithArticlesList";
+import PostPreviewCard from "@/components/ui/PostPreviewCard/PostPreviewCard";
+import { RecentPostsDataMock } from "@/mocks/RecentPostsData.mock";
+import { FeaturedWorksDataMock } from "@/mocks/FeaturedWorksData.mock";
+import WorkPreviewCard from "@/components/ui/WorkPreviewCard/WorkPreviewCard";
 
 export default function Home() {
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-
-      </div>
+      <AboutMe />
+      <SectionWithArticlesList title="Recent posts" href='/'>
+        <ol className={styles.lineList}>
+          {RecentPostsDataMock.map(item => <li key={item.title}>
+            <PostPreviewCard {...item} />
+          </li>)}
+        </ol>
+      </SectionWithArticlesList>
+      <SectionWithArticlesList title="Featured works" href='/'>
+        <ol className={styles.columnList}>
+          {FeaturedWorksDataMock.map(item => <li key={item.title}>
+            <WorkPreviewCard {...item} />
+          </li>)}
+        </ol>
+      </SectionWithArticlesList>
     </main>
   );
 }

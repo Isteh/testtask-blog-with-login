@@ -1,0 +1,37 @@
+@import '/app/mediaBreakPoints';
+
+.section {
+  padding-bottom: 32px;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--dark-color);
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  padding: 0 var(--desktop-margin);
+  margin-bottom: 5px;
+  align-items: baseline;
+
+  @media (max-width: $mobile-width) {
+    padding: 0 var(--mobile-margin);
+    margin-bottom: 10px;
+    justify-content: center;
+  }
+}
+
+.title {
+  font-size: 22px;
+  font-weight: normal;
+  line-height: 60px;
+}
+
+.subText {
+  color: var(--secondary-color);
+  margin-left: auto;
+
+  @media (max-width: $mobile-width) {
+    display: none;
+  }
+}

@@ -1,0 +1,15 @@
+.button {
+  font-family: var(--main-font);
+  font-size: 20px;
+  font-weight: 500;
+  color: white;
+
+  border: none;
+  background-color: var(--primary-color);
+  padding: 10px 20px 15px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d85353;
+  }
+}

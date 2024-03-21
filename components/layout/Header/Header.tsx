@@ -8,7 +8,7 @@ import classNames from 'classnames'
 
 const Header: FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false)
-    return <header>
+    return <header className={styles.header}>
         <nav className={classNames(styles.nav,
             { [`${styles.listOpen}`]: isOpen })}>
 

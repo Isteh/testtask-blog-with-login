@@ -1,0 +1,30 @@
+@import '/app/mediaBreakPoints';
+
+.lineList {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 20px;
+
+  margin: 0 var(--desktop-margin);
+
+  @media (max-width: $mobile-width) {
+    margin: 0 var(--mobile-margin);
+    justify-content: center;
+  }
+}
+
+.columnList {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 46px;
+
+  margin: 0 var(--desktop-margin);
+
+  @media (max-width: $mobile-width) {
+    margin: 0 var(--mobile-margin);
+    justify-content: center;
+  }
+}
