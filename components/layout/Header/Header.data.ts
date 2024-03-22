@@ -15,8 +15,4 @@ export const linksList = [
     content: 'Contact',
     href: '/contact',
   },
-  {
-    content: 'Login',
-    href: '/login',
-  },
 ];

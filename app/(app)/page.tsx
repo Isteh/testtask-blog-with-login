@@ -1,4 +1,4 @@
-import styles from "./page.module.scss";
+import styles from "./Home.module.scss";
 import AboutMe from "@/components/blocks/AboutMe/AboutMe";
 import SectionWithArticlesList from "@/components/ui/SectionWithArticlesList/SectionWithArticlesList";
 import PostPreviewCard from "@/components/ui/PostPreviewCard/PostPreviewCard";

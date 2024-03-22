@@ -1,3 +1,4 @@
+import { Url } from 'next/dist/shared/lib/router/router';
 import { HTMLAttributes, ReactNode } from 'react';
 
 export interface ISectionWithArticlesListProps

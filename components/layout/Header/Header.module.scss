@@ -26,11 +26,15 @@
   width: 100%;
   justify-content: flex-end;
 
+  & li:has(.button) {
+    align-self: center;
+    margin-left: 10px;
+  }
+
   @media (max-width: $mobile-width) {
     flex-direction: column;
     justify-content: flex-start;
     background-color: white;
-    overflow-y: scroll;
     position: absolute;
     top: 50px;
     min-height: calc(100vh - 50px);
@@ -81,5 +85,13 @@
 
   @media (max-width: $mobile-width) {
     display: block;
+  }
+}
+
+.button {
+  @media (max-width: $mobile-width) {
+    margin: 0 auto;
+    min-height: 75px;
+    width: 100%;
   }
 }

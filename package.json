@@ -3,22 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"next dev \" \"npm run server\"",
     "build": "next build",
-    "start": "next start",
+    "start": "concurrently \"next start \" \"npm run server\"",
     "lint": "next lint",
-    "server": "cd server && npm run server"
+    "server": "cd server && npm run server",
+    "installDependencies": "npm i && cd server && npm i",
+    "magicButton": "npm run installDependencies && npm run build && npm run start"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.2",
+    "axios": "^1.6.8",
     "classnames": "^2.5.1",
     "next": "14.1.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-redux": "^9.1.0"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "concurrently": "^8.2.2",
     "eslint": "^8",
     "eslint-config-next": "14.1.4",
     "sass": "^1.72.0",

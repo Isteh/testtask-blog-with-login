@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Heebo } from "next/font/google";
 import "./globals.scss";
-import Footer from "@/components/layout/Footer/Footer";
-import Header from "@/components/layout/Header/Header";
+import IsAuth from "@/components/layout/IsAuth/IsAuth";
+import StoreProvider from "@/components/layout/StoreProvider/StoreProvider";
 
 const heebo = Heebo({
   subsets: ["latin"],
@@ -21,14 +21,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
+  return (<StoreProvider>
     <html lang="en" className={heebo.variable}>
-      <body >
-        <Header />
+      <body>
+        <IsAuth />
         {children}
-        <Footer />
       </body>
-
     </html>
+  </StoreProvider>
   );
 }
