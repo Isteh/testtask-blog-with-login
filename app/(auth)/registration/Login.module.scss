@@ -1,8 +1,16 @@
+@import '/app/mediaBreakPoints';
+
 .main {
   display: flex;
   flex-direction: column;
-  margin: 0 var(--desktop-margin);
-  padding-top: 50px;
+  margin: 0 auto;
+  padding: 30vh 0;
+
+  min-width: 700px;
+
+  @media (max-width: $mobile-width) {
+    min-width: 355px;
+  }
 }
 
 .error {
