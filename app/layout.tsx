@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Heebo } from "next/font/google";
 import "./globals.scss";
-import IsAuth from "@/components/layout/IsAuth/IsAuth";
 import StoreProvider from "@/components/layout/StoreProvider/StoreProvider";
 
 const heebo = Heebo({
@@ -24,7 +23,7 @@ export default function RootLayout({
   return (<StoreProvider>
     <html lang="en" className={heebo.variable}>
       <body>
-        <IsAuth />
+
         {children}
       </body>
     </html>

@@ -56,8 +56,12 @@ class authController {
         password: hashPassword,
       });
       await user.save();
+      const token = generateAccessToken(
+        user._id,
+        email
+      );
       return res.json({
-        message: 'User succesfully registred',
+        token,
       });
     } catch (e) {
       res

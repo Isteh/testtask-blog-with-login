@@ -3,7 +3,7 @@ import {
   createSlice,
 } from '@reduxjs/toolkit';
 import { loadState } from '../storage';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { API_PREFIX } from '@/consts';
 
 export const JWT_PERSISTENT_STATE = 'userData';
@@ -14,7 +14,7 @@ export interface UserPersistentState {
 
 export interface UserState {
   jwt: string | null;
-  loginErrorMessage?: string;
+  authErrorMessage?: string;
 }
 
 const initialState: UserState = {
@@ -22,7 +22,7 @@ const initialState: UserState = {
     loadState<UserPersistentState>(
       JWT_PERSISTENT_STATE
     )?.jwt ?? null,
-  loginErrorMessage: undefined,
+  authErrorMessage: undefined,
 };
 
 export const login = createAsyncThunk(
@@ -31,14 +31,39 @@ export const login = createAsyncThunk(
     email: string;
     password: string;
   }) => {
-    console.log(params);
-    const { data } = await axios.post(
-      `${API_PREFIX}/login`,
-      {
-        ...params,
-      }
-    );
-    return data;
+    try {
+      const { data } = await axios.post(
+        `${API_PREFIX}/login`,
+        {
+          ...params,
+        }
+      );
+      return data;
+    } catch (e) {
+      if (e instanceof AxiosError)
+        throw new Error(e.response?.data.message);
+    }
+  }
+);
+
+export const registration = createAsyncThunk(
+  'user/registration',
+  async (params: {
+    email: string;
+    password: string;
+  }) => {
+    try {
+      const { data } = await axios.post(
+        `${API_PREFIX}/registration`,
+        {
+          ...params,
+        }
+      );
+      return data;
+    } catch (e) {
+      if (e instanceof AxiosError)
+        throw new Error(e.response?.data.message);
+    }
   }
 );
 
@@ -49,21 +74,42 @@ export const userSlice = createSlice({
     logout: (state) => {
       state.jwt = null;
     },
-    clearLoginError: (state) => {
-      state.loginErrorMessage = undefined;
+    clearAuthError: (state) => {
+      state.authErrorMessage = undefined;
     },
   },
   extraReducers: (buider) => {
+    //login
     buider.addCase(
       login.fulfilled,
       (state, action) => {
+        if (!action.payload) {
+          return;
+        }
         state.jwt = action.payload.token;
       }
     );
     buider.addCase(
       login.rejected,
       (state, action) => {
-        state.loginErrorMessage =
+        state.authErrorMessage =
+          action.error.message;
+      }
+    );
+    //registration
+    buider.addCase(
+      registration.fulfilled,
+      (state, action) => {
+        if (!action.payload) {
+          return;
+        }
+        state.jwt = action.payload.token;
+      }
+    );
+    buider.addCase(
+      registration.rejected,
+      (state, action) => {
+        state.authErrorMessage =
           action.error.message;
       }
     );

@@ -9,7 +9,7 @@ import { FormEvent, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/store/store";
-import { login, userActions } from "@/store/slices/userSlice";
+import { registration, userActions } from "@/store/slices/userSlice";
 
 export type LoginForm = {
     email: string,
@@ -23,19 +23,18 @@ export default function Login() {
 
     useEffect(() => {
         if (jwt) router.push('/')
-        return () => { dispatch(userActions.clearAuthError()) }
-    }, [jwt, router, dispatch])
+    }, [jwt, router])
 
     const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         dispatch(userActions.clearAuthError())
         const formData = new FormData(e.currentTarget)
         const { email, password } = Object.fromEntries(formData) as LoginForm
-        await dispatch(login({ email, password }))
+        await dispatch(registration({ email, password }))
     }
 
     return <main className={styles.main}>
-        <Title className={styles.title} level="h1">Login</Title>
+        <Title className={styles.title} level="h1">Registration</Title>
         <span className={classNames(styles.error,
             { [`${styles.show}`]: loginErrorMessage })}>
             {loginErrorMessage ? loginErrorMessage : ''}
@@ -43,10 +42,10 @@ export default function Login() {
         <form className={styles.form} onSubmit={submitHandler}>
             <Input name="email" placeholder="email" type="email" />
             <Input name="password" placeholder="password" type="password" />
-            <Button>Sign In</Button>
+            <Button>Sign Up</Button>
         </form>
-        <span className={styles.text}>Don&apos;t have an account?
-            <Link className={styles.link} href='/registration'>Sign Up</Link>
+        <span className={styles.text}>Already have an account?
+            <Link className={styles.link} href='/login'>Sign In</Link>
         </span >
 
     </main >
